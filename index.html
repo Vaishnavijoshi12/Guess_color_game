@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess_color</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .colorbox {
+            display: inline-block;
+            width: 280px;
+            height: 120px;
+            margin-top: 10%;
+            border: 1px solid #911313;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="colorbox"></div>
+    <h2>Whats your color? </h2>
+    <form class="answer" onsubmit="submitmyguess();return false;">
+        #<input type="text" placeholder="#fff">
+    </form>
+    <script>
+        function submitmyguess() {
+            const value = document.querySelector('input').value;
+            const currentcolor = window.currentcolor;
+
+            if (value === currentcolor) {
+                alert('You are right');
+            }
+            else {
+                color_name=String.fromCharCode(currentcolor)
+               alert('ohh! wrong answer correct answer is =>' + currentcolor);
+            }
+            document.querySelector('input').value='';
+            setRandomcolor();
+        }
+        function randomnumber() {
+            const n = Math.ceil(Math.random() * 15);
+            if (n > 9) {
+                return 'abcdef'[n - 10];
+            }
+            return n + "";
+        }
+
+        function setRandomcolor() {
+            const hex = randomnumber() + randomnumber() + randomnumber();
+            // alert(hex);
+            // randomnumber();
+            window.currentcolor = hex;
+            document.querySelector('.colorbox').style.backgroundColor = "#" + hex;
+
+        }
+        setRandomcolor();
+    </script>
+</body>
+
+</html>
